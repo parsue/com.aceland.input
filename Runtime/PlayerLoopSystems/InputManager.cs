@@ -34,6 +34,8 @@ namespace AceLand.Input.PlayerLoopSystems
 
         internal void Initialize()
         {
+            if (Settings.actionAsset == null) return;
+
             _buttonInput = new();
             AxisInputSystem = new();
             Axis2InputSystem = new();

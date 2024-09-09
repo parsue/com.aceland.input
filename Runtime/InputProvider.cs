@@ -6,7 +6,7 @@ namespace AceLand.Input
 {
     public static class InputProvider
     {
-        #region Builder
+        #region Importer
         
         public static IProviderActionNameImporter<T> Importer<T>()
             where T : struct => new InputProviderImporter<T>();

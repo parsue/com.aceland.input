@@ -46,12 +46,12 @@ namespace AceLand.Input.ProjectSetting
         public bool disableReloadKeyInRuntime;
 
         [Header("Axis Input")]
-        public bool handleAxisInput = true;
+        public bool handleAxisInput;
         [ConditionalShow("handleAxisInput")]
         public string axisActionMapName = "AxisInput";
         
         [Header("Axis2 Input")]
-        public bool handleAxis2Input = true;
+        public bool handleAxis2Input;
         [ConditionalShow("handleAxis2Input")]
         public string axis2ActionMapName = "Axis2Input";
     }
