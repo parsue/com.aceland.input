@@ -12,15 +12,17 @@ using UnityEngine.PlayerLoop;
 
 namespace AceLand.Input.PlayerLoopSystems
 {
-    public class InputManager : DisposableObject, IPlayerLoopSystem
+    internal class InputManager : DisposableObject, IPlayerLoopSystem
     {
-        private static AceLandInputSettings Settings => InputHelper.Settings;
+        private static AmvrInputSettings Settings => InputHelper.Settings;
         private static PlayerLoopSystem _playerLoopSystem;
 
         public static Vector2 WinMousePosition => Mouse.current.position.ReadValue();
         public static Vector2 WinMouseDelta => WinMousePosition - _lastMousePosition;
-        public static bool IsOverUI => Helper.IsOverUIElement(WinMousePosition);
         public static bool OverrideUserInput;
+        
+        public static void SetBtnStatus(string name, BtnState state) => 
+            _buttonInput.ForceBtnState(name, state);
 
         private static InputActionMap _actionButtonInput;
         private static InputActionMap _actionAxisInput;
@@ -34,8 +36,6 @@ namespace AceLand.Input.PlayerLoopSystems
 
         internal void Initialize()
         {
-            if (Settings.actionAsset == null) return;
-
             _buttonInput = new();
             AxisInputSystem = new();
             Axis2InputSystem = new();
@@ -89,13 +89,13 @@ namespace AceLand.Input.PlayerLoopSystems
             _lastMousePosition = WinMousePosition;
         }
 
-        private void SetCursor()
+        private static void SetCursor()
         {
             Cursor.visible = Settings.showWinCursor;
             Cursor.lockState = Settings.lockMode;
         }
 
-        public void ShowCursor(bool show)
+        public static void ShowCursor(bool show)
         {
             if (show)
             {
@@ -110,27 +110,6 @@ namespace AceLand.Input.PlayerLoopSystems
             }
         }
 
-        private void SetAxisInput()
-        {
-            if (!Settings.handleAxisInput) return;
-            _actionAxisInput = Settings.actionAsset.actionMaps.First(a => a.name == Settings.axisActionMapName);
-            AxisInputSystem.SetActions(_actionAxisInput);
-        }
-
-        private void SetAxis2Input()
-        {
-            if (!Settings.handleAxis2Input) return;
-            _actionAxis2Input = Settings.actionAsset.actionMaps.First(a => a.name == Settings.axis2ActionMapName);
-            Axis2InputSystem.SetActions(_actionAxis2Input);
-        }
-
-        private void SetButtonInput()
-        {
-            if (!Settings.handleButtonInput) return;
-            _actionButtonInput = Settings.actionAsset.actionMaps.First(a => a.name == Settings.buttonActionMapName);
-            _buttonInput.SetActions(_actionButtonInput);
-        }
-
         public static void LockCursor(bool lockCursor, CursorLockMode unlockMode = CursorLockMode.Confined)
         {
             Cursor.lockState = lockCursor switch
@@ -138,6 +117,30 @@ namespace AceLand.Input.PlayerLoopSystems
                 true => CursorLockMode.Locked,
                 false => unlockMode,
             };
+        }
+
+        private void SetButtonInput()
+        {
+            if (!Settings.handleButtonInput) return;
+            _actionButtonInput = Settings.actionAsset.actionMaps
+                .First(a => a.name == Settings.buttonActionMapName);
+            _buttonInput.SetActions(_actionButtonInput);
+        }
+
+        private void SetAxisInput()
+        {
+            if (!Settings.handleAxisInput) return;
+            _actionAxisInput = Settings.actionAsset.actionMaps
+                .First(a => a.name == Settings.axisActionMapName);
+            AxisInputSystem.SetActions(_actionAxisInput);
+        }
+
+        private void SetAxis2Input()
+        {
+            if (!Settings.handleAxis2Input) return;
+            _actionAxis2Input = Settings.actionAsset.actionMaps
+                .First(a => a.name == Settings.axis2ActionMapName);
+            Axis2InputSystem.SetActions(_actionAxis2Input);
         }
     }
 }
