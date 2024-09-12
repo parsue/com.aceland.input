@@ -1,6 +1,6 @@
 using System;
 
-namespace AceLand.Input.Mono
+namespace AceLand.Input.State
 {
     [Serializable]
     public enum UIButtonTransition
