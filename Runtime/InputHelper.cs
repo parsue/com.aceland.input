@@ -1,11 +1,14 @@
 ﻿using AceLand.Input.PlayerLoopSystems;
 using AceLand.Input.ProjectSetting;
+using AceLand.Input.State;
+using AceLand.Library.Utils;
+using UnityEngine;
 
 namespace AceLand.Input
 {
     public static class InputHelper
     {
-        public static AmvrInputSettings Settings { get; internal set; }
+        public static AceLandInputSettings Settings { get; internal set; }
 
         public static Vector2 WinMousePosition => InputManager.WinMousePosition;
         public static Vector2 WinMouseDelta => InputManager.WinMouseDelta;

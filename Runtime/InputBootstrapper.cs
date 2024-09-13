@@ -1,4 +1,5 @@
-﻿using AceLand.Input.ProjectSetting;
+﻿using AceLand.Input.PlayerLoopSystems;
+using AceLand.Input.ProjectSetting;
 using UnityEngine;
 
 namespace AceLand.Input
@@ -10,7 +11,7 @@ namespace AceLand.Input
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialization()
         {
-            InputHelper.Settings = Resources.Load<AmvrInputSettings>(nameof(AmvrInputSettings));
+            InputHelper.Settings = Resources.Load<AceLandInputSettings>(nameof(AceLandInputSettings));
             _inputManager = new();
             _inputManager.Initialize();
         }

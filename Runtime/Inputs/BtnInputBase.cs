@@ -53,7 +53,7 @@ namespace AceLand.Input.Inputs
             return InputManager.OverrideUserInput || !Btns.TryGetValue(name, out var btnStatus) ? BtnState.Idle : btnStatus.State;
         }
 
-        protected virtual void ForceBtnState(string name, BtnState state)
+        internal virtual void ForceBtnState(string name, BtnState state)
         {
             switch (state)
             {

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using AceLand.Input.Inputs;
 using AceLand.Input.ProjectSetting;
+using AceLand.Input.State;
 using AceLand.Library.Disposable;
-using AceLand.Library.Utils;
 using AceLand.PlayerLoopHack;
 using AceLand.TaskUtils;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace AceLand.Input.PlayerLoopSystems
 {
     internal class InputManager : DisposableObject, IPlayerLoopSystem
     {
-        private static AmvrInputSettings Settings => InputHelper.Settings;
+        private static AceLandInputSettings Settings => InputHelper.Settings;
         private static PlayerLoopSystem _playerLoopSystem;
 
         public static Vector2 WinMousePosition => Mouse.current.position.ReadValue();
