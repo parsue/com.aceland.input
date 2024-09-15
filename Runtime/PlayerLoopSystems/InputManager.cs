@@ -2,7 +2,6 @@
 using AceLand.Input.Inputs;
 using AceLand.Input.ProjectSetting;
 using AceLand.Input.State;
-using AceLand.Library.Disposable;
 using AceLand.PlayerLoopHack;
 using AceLand.TaskUtils;
 using UnityEngine;
@@ -12,7 +11,7 @@ using UnityEngine.PlayerLoop;
 
 namespace AceLand.Input.PlayerLoopSystems
 {
-    internal class InputManager : DisposableObject, IPlayerLoopSystem
+    internal class InputManager : IPlayerLoopSystem
     {
         private static AceLandInputSettings Settings => InputHelper.Settings;
         private static PlayerLoopSystem _playerLoopSystem;
@@ -36,9 +35,9 @@ namespace AceLand.Input.PlayerLoopSystems
 
         internal void Initialize()
         {
-            _buttonInput = new();
-            AxisInputSystem = new();
-            Axis2InputSystem = new();
+            _buttonInput = new ButtonInput();
+            AxisInputSystem = new AxisInput();
+            Axis2InputSystem = new Axis2Input();
             _buttonInput.Init();
             AxisInputSystem.Init();
             Axis2InputSystem.Init();
