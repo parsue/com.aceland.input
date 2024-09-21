@@ -67,16 +67,14 @@ namespace AceLand.Input.Mono
             targetAxis.x = (absInputAxisRaw.x < _inputSettings.defaultDeadzoneMin) switch
             {
                 true => 0,
-                false => absInputAxisRaw.x.Remap(
-                    _inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax,
-                    0, 1) * inputAxisRawDirection.x,
+                false => absInputAxisRaw.x
+                    .Remap01(_inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax) * inputAxisRawDirection.x,
             };
             targetAxis.y = (absInputAxisRaw.y < _inputSettings.defaultDeadzoneMin) switch
             {
                 true => 0,
-                false => absInputAxisRaw.y.Remap(
-                    _inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax,
-                    0, 1) * inputAxisRawDirection.y,
+                false => absInputAxisRaw.y
+                    .Remap01(_inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax)* inputAxisRawDirection.y,
             };
             finalAxis.x = (targetAxis.x == 0) switch
             {
