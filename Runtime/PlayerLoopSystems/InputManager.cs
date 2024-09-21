@@ -53,14 +53,14 @@ namespace AceLand.Input.PlayerLoopSystems
         {
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InsertSystem<TimeUpdate>();
+            _playerLoopSystem.InsertSystem(PlayerLoopType.Initialization);
             TaskHelper.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()
         {
             OnStop();
-            _playerLoopSystem.RemoveSystem<TimeUpdate>();
+            _playerLoopSystem.RemoveSystem(PlayerLoopType.Initialization);
         }
         
         public void SystemUpdate()
