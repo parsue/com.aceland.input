@@ -54,7 +54,7 @@ namespace AceLand.Input.PlayerLoopSystems
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
             _playerLoopSystem.InsertSystem<TimeUpdate>();
-            TaskHandler.AddApplicationQuitListener(Stop);
+            TaskHelper.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()

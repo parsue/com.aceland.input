@@ -88,7 +88,7 @@ namespace AceLand.Input.PlayerLoopSystems
             if (!Settings.handleAxisInput) return;
             
             OnStart();
-            TaskHandler.AddApplicationQuitListener(OnStop);
+            TaskHelper.AddApplicationQuitListener(OnStop);
         }
 
         private void OnStart()
