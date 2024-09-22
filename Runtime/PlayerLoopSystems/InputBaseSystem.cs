@@ -7,7 +7,6 @@ using AceLand.TaskUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.LowLevel;
-using UnityEngine.PlayerLoop;
 
 namespace AceLand.Input.PlayerLoopSystems
 {
@@ -94,12 +93,12 @@ namespace AceLand.Input.PlayerLoopSystems
         private void OnStart()
         {
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InsertSystem<Initialization>(10);
+            _playerLoopSystem.InsertSystem(PlayerLoopType.Initialization);
         }
 
         private void OnStop()
         {
-            _playerLoopSystem.RemoveSystem<Initialization>();
+            _playerLoopSystem.RemoveSystem(PlayerLoopType.Initialization);
         }
 
         public void SystemUpdate()
