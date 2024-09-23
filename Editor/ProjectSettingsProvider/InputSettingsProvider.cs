@@ -10,6 +10,9 @@ namespace AceLand.Input.Editor.ProjectSettingsProvider
         public const string SETTINGS_NAME = "Project/AceLand Input";
         private SerializedObject _settings;
         
+        [InitializeOnLoadMethod]
+        public static void CreateSettings() => AceLandInputSettings.GetSerializedSettings();
+        
         private InputSettingsProvider(string path, SettingsScope scope = SettingsScope.User) 
             : base(path, scope) { }
         
