@@ -1,5 +1,5 @@
-﻿using AceLand.Input.PlayerLoopSystems;
-using AceLand.Input.State;
+using AceLand.Input.PlayerLoopSystems;
+using AceLand.Input.States;
 using AceLand.Library.Extensions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,7 +47,6 @@ namespace AceLand.Input.Mono
         private Vector2 RightStickHandler(Vector2 input)
         {
             return SmoothAxis(ref input, ref _rightStickVelocity);
-            
         }
 
         private Vector2 SmoothAxis(ref Vector2 rawAxis, ref Vector2 velocity)
@@ -67,14 +66,16 @@ namespace AceLand.Input.Mono
             targetAxis.x = (absInputAxisRaw.x < _inputSettings.defaultDeadzoneMin) switch
             {
                 true => 0,
-                false => absInputAxisRaw.x
-                    .Remap01(_inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax) * inputAxisRawDirection.x,
+                false => absInputAxisRaw.x.Remap(
+                    _inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax,
+                    0, 1) * inputAxisRawDirection.x,
             };
             targetAxis.y = (absInputAxisRaw.y < _inputSettings.defaultDeadzoneMin) switch
             {
                 true => 0,
-                false => absInputAxisRaw.y
-                    .Remap01(_inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax)* inputAxisRawDirection.y,
+                false => absInputAxisRaw.y.Remap(
+                    _inputSettings.defaultDeadzoneMin, _inputSettings.defaultDeadzoneMax,
+                    0, 1) * inputAxisRawDirection.y,
             };
             finalAxis.x = (targetAxis.x == 0) switch
             {
