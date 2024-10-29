@@ -1,19 +1,19 @@
 using System.Collections;
 using AceLand.Input.Events;
 using AceLand.Input.ProjectSetting;
-using AceLand.Input.States;
+using AceLand.Input.State;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace AceLand.Input.Mono
 {
     [RequireComponent(typeof(Image))]
-    [AddComponentMenu("AMVR/Input/UI/Axis Button")]
+    [AddComponentMenu("AceLand/Input/UI/Axis Button")]
     [ExecuteInEditMode]
     public class UIAxisButton : UIButton,
         IAxisInput
     {
-        private static AmvrInputSettings Settings => InputHelper.Settings;
+        private static AceLandInputSettings Settings => InputHelper.Settings;
         
         [Header("Axis Button")]
         [SerializeField] private string axisKey;

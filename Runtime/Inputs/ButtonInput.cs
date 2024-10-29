@@ -31,13 +31,7 @@ namespace AceLand.Input.Inputs
                     BtnState.Idle => BtnState.Idle,
                     BtnState.Pressed => BtnState.Idle,
                     BtnState.Released => BtnState.Idle,
-                    BtnState.ReleasedAsButton => Settings.releaseType switch
-                    {
-                        ReleaseHandlingType.ReleasedOrReleasedAsButton => BtnState.Idle,
-                        ReleaseHandlingType.ReleasedAfterReleasedAsButton => BtnState.Released,
-                        ReleaseHandlingType.ReleasedReplaceReleasedAsButton => BtnState.Idle,
-                        _ => throw new System.ArgumentOutOfRangeException(nameof(ReleaseHandlingType), Settings.releaseType, string.Empty),
-                    },
+                    BtnState.ReleasedAsButton => BtnState.Idle,
                     BtnState.Holding => BtnState.Holding,
                     _ => throw new System.ArgumentOutOfRangeException(nameof(BtnState), btnStatus.State, string.Empty),
                 };

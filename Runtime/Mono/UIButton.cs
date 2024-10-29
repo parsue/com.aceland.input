@@ -1,5 +1,5 @@
 using System;
-using AceLand.Input.States;
+using AceLand.Input.State;
 using AceLand.Library.Attribute;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,7 +18,7 @@ namespace AceLand.Input.Mono
         [SerializeField] private protected UIButtonType type = UIButtonType.UIAction;
         [SerializeField] private protected string actionKey;
         [SerializeField, ConditionalShow("type", UIButtonType.PhysicsButton)]
-        private protected bool isExitAsRelease = false;
+        private protected bool isExitAsRelease;
 
         [Header("Transition")]
         [SerializeField] private protected UIButtonTransition transition = UIButtonTransition.Color;

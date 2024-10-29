@@ -1,4 +1,4 @@
-using AceLand.Input.States;
+using AceLand.Input.State;
 using AceLand.Library.Attribute;
 using AceLand.Library.ProjectSetting;
 using AceLand.PlayerLoopHack;
@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace AceLand.Input.ProjectSetting
 {
-    public class AmvrInputSettings : ProjectSettings<AmvrInputSettings>
+    public class AceLandInputSettings : ProjectSettings<AceLandInputSettings>
     {
         [Header("Settings")]
         public PlayerLoopType managerLoopType = PlayerLoopType.TimeUpdate;

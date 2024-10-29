@@ -12,6 +12,9 @@ namespace AceLand.Input.Inputs
         private protected readonly List<string> BtnKeys = new();
         private protected bool ReleaseFromHolding = false;
 
+        public BtnStatus GetStatus(string name) =>
+            Btns[name];
+        
         protected override void OnInit()
         {
             Btns.Clear();
@@ -112,7 +115,7 @@ namespace AceLand.Input.Inputs
             ReleaseFromHolding = btnStatus.IsHolding;
             btnStatus.ReleaseTime = Time.realtimeSinceStartup;
             btnStatus.State = btnStatus.ReleaseTime - btnStatus.PressTime < InputSettings.defaultHoldTime
-                ? Settings.releaseType is ReleaseHandlingType.ReleasedReplaceReleasedAsButton
+                ? Settings.releaseType is ReleaseHandlingType.ReleasedOnly
                     ? BtnState.Released 
                     : BtnState.ReleasedAsButton
                 : BtnState.Released;

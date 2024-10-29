@@ -13,7 +13,7 @@ namespace AceLand.Input.PlayerLoopSystems
 {
     internal class InputManager : DisposableObject, IPlayerLoopSystem
     {
-        private static AmvrInputSettings Settings => InputHelper.Settings;
+        private static AceLandInputSettings Settings => InputHelper.Settings;
         private static PlayerLoopSystem _playerLoopSystem;
 
         public static Vector2 WinMousePosition => Mouse.current.position.ReadValue();
@@ -57,7 +57,7 @@ namespace AceLand.Input.PlayerLoopSystems
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
             _playerLoopSystem.InsertSystem(Settings.managerLoopType);
-            TaskHandler.AddApplicationQuitListener(Stop);
+            TaskHelper.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()
