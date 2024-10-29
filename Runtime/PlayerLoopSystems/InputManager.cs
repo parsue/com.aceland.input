@@ -2,23 +2,26 @@
 using AceLand.Input.Inputs;
 using AceLand.Input.ProjectSetting;
 using AceLand.Input.State;
+using AceLand.Library.Disposable;
 using AceLand.PlayerLoopHack;
 using AceLand.TaskUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.LowLevel;
-using UnityEngine.PlayerLoop;
 
 namespace AceLand.Input.PlayerLoopSystems
 {
-    internal class InputManager : IPlayerLoopSystem
+    internal class InputManager : DisposableObject, IPlayerLoopSystem
     {
-        private static AceLandInputSettings Settings => InputHelper.Settings;
+        private static AmvrInputSettings Settings => InputHelper.Settings;
         private static PlayerLoopSystem _playerLoopSystem;
 
         public static Vector2 WinMousePosition => Mouse.current.position.ReadValue();
         public static Vector2 WinMouseDelta => WinMousePosition - _lastMousePosition;
         public static bool OverrideUserInput;
+
+        public static BtnStatus GetButtonStatus(string name) =>
+            _buttonInput.GetStatus(name);
         
         public static void SetBtnStatus(string name, BtnState state) => 
             _buttonInput.ForceBtnState(name, state);
@@ -53,14 +56,14 @@ namespace AceLand.Input.PlayerLoopSystems
         {
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InsertSystem(PlayerLoopType.Initialization);
-            TaskHelper.AddApplicationQuitListener(Stop);
+            _playerLoopSystem.InsertSystem(Settings.managerLoopType);
+            TaskHandler.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()
         {
             OnStop();
-            _playerLoopSystem.RemoveSystem(PlayerLoopType.Initialization);
+            _playerLoopSystem.RemoveSystem(Settings.managerLoopType);
         }
         
         public void SystemUpdate()
@@ -70,9 +73,9 @@ namespace AceLand.Input.PlayerLoopSystems
 
         private void OnStart()
         {
-            _actionButtonInput?.Enable();
-            _actionAxisInput?.Enable();
-            _actionAxis2Input?.Enable();
+            _actionButtonInput.Enable();
+            _actionAxisInput.Enable();
+            _actionAxis2Input.Enable();
         }
 
         private void OnStop()

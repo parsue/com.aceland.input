@@ -14,6 +14,12 @@ namespace AceLand.Input
         public static Vector2 WinMouseDelta => InputManager.WinMouseDelta;
         public static bool IsOverUI => Helper.IsOverUIElement(WinMousePosition);
 
+        public static BtnStatus GetBtnStatus(string name) =>
+            InputManager.GetButtonStatus(name);
+
+        public static InputAction GetAction(string name) =>
+            Settings.actionAsset.FindAction(name);
+        
         public static void SetBtnStatus(string name, BtnState state) =>
             InputManager.SetBtnStatus(name, state);
 
