@@ -1,5 +1,5 @@
 using System;
-using AceLand.Input.State;
+using AceLand.Input.States;
 using AceLand.Library.Attribute;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,31 +8,32 @@ using UnityEngine.UI;
 namespace AceLand.Input.Mono
 {
     [RequireComponent(typeof(Image))]
-    [AddComponentMenu("AMVR/Input/UI/UI Button")]
+    [AddComponentMenu("AMVR/Input/UI/Button")]
+    [ExecuteInEditMode]
     public class UIButton : MonoBehaviour,
         IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        [Header("UIButton")]
-        [SerializeField] private bool interactable = true;
-        [SerializeField] private UIButtonType type = UIButtonType.UIAction;
-        [SerializeField] private string actionKey;
+        [Header("Button")]
+        [SerializeField] private protected bool interactable = true;
+        [SerializeField] private protected UIButtonType type = UIButtonType.UIAction;
+        [SerializeField] private protected string actionKey;
         [SerializeField, ConditionalShow("type", UIButtonType.PhysicsButton)]
-        private bool isExitAsRelease = false;
+        private protected bool isExitAsRelease = false;
 
         [Header("Transition")]
-        [SerializeField] private UIButtonTransition transition = UIButtonTransition.Color;
+        [SerializeField] private protected UIButtonTransition transition = UIButtonTransition.Color;
         [SerializeField, ConditionalShow("transition", UIButtonTransition.Color)]
-        private Color activeColor = new(0.85f, 0.85f, 0.85f, 1f);
+        private protected Color activeColor = new(0.85f, 0.85f, 0.85f, 1f);
         [SerializeField, ConditionalShow("transition", UIButtonTransition.Color)]
-        private Color inactiveColor = Color.grey;
+        private protected Color inactiveColor = Color.grey;
         [SerializeField, ConditionalShow("transition", UIButtonTransition.Sprite)]
-        private Sprite activeSprite;
+        private protected Sprite activeSprite;
         [SerializeField, ConditionalShow("transition", UIButtonTransition.Sprite)]
-        private Sprite inactiveSprite;
+        private protected Sprite inactiveSprite;
 
-        private Image _image;
-        private bool _isPressed;
-        private bool _isEnter;
+        private protected Image Image;
+        private protected bool IsPressed;
+        private protected bool IsEnter;
 
         public bool Interactive
         {
@@ -44,17 +45,17 @@ namespace AceLand.Input.Mono
             }
         }
 
-        private void OnValidate()
+        protected virtual  void OnValidate()
         {
-            _image ??= GetComponentInChildren<Image>();
-            if (!_image) return;
+            Image ??= GetComponentInChildren<Image>();
+            if (!Image) return;
             
             SetImage();
         }
 
         protected virtual void Awake()
         {
-            _image = GetComponentInChildren<Image>();
+            Image = GetComponentInChildren<Image>();
         }
 
         protected virtual void OnEnable()
@@ -64,22 +65,22 @@ namespace AceLand.Input.Mono
 
         protected virtual void OnDisable()
         {
-            _isPressed = false;
+            IsPressed = false;
             SetImage();
         }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
             if (!enabled || !interactable) return;
-            _isEnter = true;
+            IsEnter = true;
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
             if (!enabled || !interactable) return;
             
-            _isEnter = false;
-            if (!_isPressed) return;
+            IsEnter = false;
+            if (!IsPressed) return;
             
             switch (type)
             {
@@ -88,7 +89,7 @@ namespace AceLand.Input.Mono
                 case UIButtonType.UIAction:
                     break;
                 case UIButtonType.PhysicsButton:
-                    _isPressed = false;
+                    IsPressed = false;
                     if (isExitAsRelease) OnRelease();
                     else OnIdle();
                     break;
@@ -100,17 +101,17 @@ namespace AceLand.Input.Mono
         public virtual void OnPointerDown(PointerEventData eventData)
         {
             if (!enabled || !interactable) return;
-            _isPressed = true;
+            IsPressed = true;
             OnPress();
         }
 
         public virtual void OnPointerUp(PointerEventData eventData)
         {
             if (!enabled || !interactable) return;
-            if (!_isEnter || !_isPressed) return;
+            if (!IsEnter || !IsPressed) return;
             
             OnRelease();
-            _isPressed = false;
+            IsPressed = false;
         }
 
         private void OnIdle()
@@ -130,15 +131,17 @@ namespace AceLand.Input.Mono
         
         protected virtual void SetImage()
         {
+            if (!Image) return;
+            
             switch (transition)
             {
                 case UIButtonTransition.None:
                     break;
                 case UIButtonTransition.Color:
-                    _image.color = enabled && interactable ? activeColor : inactiveColor;
+                    Image.color = enabled && interactable ? activeColor : inactiveColor;
                     break;
                 case UIButtonTransition.Sprite:
-                    _image.sprite = enabled && interactable ? activeSprite : inactiveSprite;
+                    Image.sprite = enabled && interactable ? activeSprite : inactiveSprite;
                     break;
                 case UIButtonTransition.SpriteBundle:
                     break;
