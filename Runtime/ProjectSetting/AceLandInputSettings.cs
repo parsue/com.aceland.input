@@ -1,14 +1,17 @@
-﻿using AceLand.Input.State;
+using AceLand.Input.States;
 using AceLand.Library.Attribute;
 using AceLand.Library.ProjectSetting;
+using AceLand.PlayerLoopHack;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace AceLand.Input.ProjectSetting
 {
-    public class AceLandInputSettings : ProjectSettings<AceLandInputSettings>
+    public class AmvrInputSettings : ProjectSettings<AmvrInputSettings>
     {
-        [Header("Input Actions")]
+        [Header("Settings")]
+        public PlayerLoopType managerLoopType = PlayerLoopType.TimeUpdate;
+        public PlayerLoopType inputLoopType = PlayerLoopType.Initialization;
         public InputActionAsset actionAsset;
         public char keyNameSeparateChar = '_';
         
@@ -23,7 +26,7 @@ namespace AceLand.Input.ProjectSetting
         [ConditionalShow("handleButtonInput")]
         public string buttonActionMapName = "ButtonInput";
         [ConditionalShow("handleButtonInput")]
-        public ReleaseHandlingType releaseType;
+        public ReleaseHandlingType releaseType = ReleaseHandlingType.ReleasedOnly;
         [ConditionalShow("handleButtonInput")]
         public bool enableQuitKey;
         [ConditionalShow("handleButtonInput", "enableQuitKey")]
@@ -46,12 +49,16 @@ namespace AceLand.Input.ProjectSetting
         public bool disableReloadKeyInRuntime;
 
         [Header("Axis Input")]
-        public bool handleAxisInput;
+        public bool handleAxisInput = true;
         [ConditionalShow("handleAxisInput")]
         public string axisActionMapName = "AxisInput";
+        [ConditionalShow("handleAxisInput")]
+        [Range(-1, 1)] public float axisButtonThreshold = -0.6f;
+        [ConditionalShow("handleAxisInput")]
+        [Min(0)] public float axisButtonActionTime = 0.8f;
         
         [Header("Axis2 Input")]
-        public bool handleAxis2Input;
+        public bool handleAxis2Input = true;
         [ConditionalShow("handleAxis2Input")]
         public string axis2ActionMapName = "Axis2Input";
     }
