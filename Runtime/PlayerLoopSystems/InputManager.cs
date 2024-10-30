@@ -38,16 +38,28 @@ namespace AceLand.Input.PlayerLoopSystems
 
         internal void Initialize()
         {
-            _buttonInput = new ButtonInput();
-            AxisInputSystem = new AxisInput();
-            Axis2InputSystem = new Axis2Input();
-            _buttonInput.Init();
-            AxisInputSystem.Init();
-            Axis2InputSystem.Init();
             SetCursor();
-            SetButtonInput();
-            SetAxisInput();
-            SetAxis2Input();
+            
+            if (Settings.handleButtonInput)
+            {
+                _buttonInput = new ButtonInput();
+                _buttonInput.Init();
+                SetButtonInput();
+            }
+
+            if (Settings.handleAxisInput)
+            {
+                AxisInputSystem = new AxisInput();
+                AxisInputSystem.Init();
+                SetAxisInput();
+            }
+
+            if (Settings.handleAxis2Input)
+            {
+                Axis2InputSystem = new Axis2Input();
+                Axis2InputSystem.Init();
+                SetAxis2Input();
+            }
 
             Start();
         }
@@ -73,9 +85,9 @@ namespace AceLand.Input.PlayerLoopSystems
 
         private void OnStart()
         {
-            _actionButtonInput.Enable();
-            _actionAxisInput.Enable();
-            _actionAxis2Input.Enable();
+            _actionButtonInput?.Enable();
+            _actionAxisInput?.Enable();
+            _actionAxis2Input?.Enable();
         }
 
         private void OnStop()
