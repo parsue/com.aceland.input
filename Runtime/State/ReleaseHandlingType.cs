@@ -2,7 +2,7 @@ namespace AceLand.Input.State
 {
     public enum ReleaseHandlingType
     {
-        ReleasedAsButton,
+        ReleasedOrReleasedAsButton,
         ReleasedOnly,
     }
 }
