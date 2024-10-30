@@ -26,6 +26,7 @@ namespace AceLand.Input.Inputs
                 {
                     OnHold(name);
                 }
+
                 btnStatus.State = btnStatus.State switch
                 {
                     BtnState.Idle => BtnState.Idle,
@@ -121,9 +122,11 @@ namespace AceLand.Input.Inputs
             var btnStatus = Btns[name];
             if (btnStatus.State is not BtnState.Pressed) return;
             if (InputManager.OverrideUserInput) return;
-            
+
             foreach (var handler in InterfaceMapping.FindObjects<IButtonPressed>())
+            {
                 handler?.OnButtonPressed(btnStatus);
+            }
         }
 
         protected override void OnHold(string name)
