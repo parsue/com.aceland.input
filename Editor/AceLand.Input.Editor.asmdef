@@ -3,9 +3,6 @@
     "rootNamespace": "AceLand.Input",
     "references": [
         "GUID:0b6e3ff925df76b408774ed4b623807b",
-        "GUID:afcc6e9dc133dcd49bde72cc59fe0906",
-        "GUID:f6e29fd4e9e98494f91cfd818cc81d32",
-        "GUID:75a4edf3e29b24eacad77b2b175d4d8f",
         "GUID:9811992f43a01034cbf814ec6fbeeb44",
         "GUID:deb2b8b8d94c7d546bf8a5548f3d8fff"
     ],

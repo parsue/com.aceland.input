@@ -9,7 +9,13 @@ namespace AceLand.Input
 {
     public static class InputHelper
     {
-        public static AceLandInputSettings Settings { get; internal set; }
+        public static AceLandInputSettings Settings
+        {
+            get => _settings ?? Resources.Load<AceLandInputSettings>(nameof(AceLandInputSettings));
+            internal set => _settings = value;
+        }
+        
+        private static AceLandInputSettings _settings;
 
         public static Vector2 WinMousePosition => InputManager.WinMousePosition;
         public static Vector2 WinMouseDelta => InputManager.WinMouseDelta;
