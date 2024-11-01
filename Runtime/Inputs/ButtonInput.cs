@@ -2,6 +2,7 @@ using AceLand.EventDriven.EventInterface;
 using AceLand.Input.Events;
 using AceLand.Input.PlayerLoopSystems;
 using AceLand.Input.State;
+using AceLand.Library.BuildLeveling;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,48 +45,13 @@ namespace AceLand.Input.Inputs
             foreach (var action in actionMap.actions)
             {
                 var btnName = action.name;
-                if (btnName == Settings.quitKey)
-                {
-                    switch (Settings.enableQuitKey)
-                    {
-#if UNITY_EDITOR
-                        case true when Settings.disableQuitKeyInEditor:
-                            continue;
-#elif DEBUG
-                        case true when Settings.disableQuitKeyInDevBuild:
-                            continue;
-#else
-                        case true when Settings.disableQuitKeyInRuntime:
-                            continue;
-#endif
-                        case true:
-                            action.performed += _ => OnPlayerQuit();
-                            continue;
-                        case false:
-                            continue;
-                    }
-                }
-                if (btnName == Settings.reloadKey)
-                {
-                    switch (Settings.enableReloadKey)
-                    {
-#if UNITY_EDITOR
-                        case true when Settings.disableReloadKeyInEditor:
-                            continue;
-#elif DEBUG
-                        case true when Settings.disableReloadKeyInDevBuild:
-                            continue;
-#else
-                        case true when Settings.disableReloadKeyInRuntime:
-                            continue;
-#endif
-                        case true:
-                            action.performed += _ => OnPlayerReload();
-                            continue;
-                        case false:
-                            continue;
-                    }
-                }
+                
+                if (btnName == Settings.quitKey && Settings.quitKeyLevel.IsAcceptedLevel())
+                    action.performed += _ => OnPlayerQuit();
+                
+                if (btnName == Settings.reloadKey && Settings.reloadKeyLevel.IsAcceptedLevel())
+                    action.performed += _ => OnPlayerReload();
+                
                 AddBtn(btnName);
                 action.performed += _ => OnPress(btnName);
                 action.canceled += _ => OnRelease(btnName);

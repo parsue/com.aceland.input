@@ -1,5 +1,6 @@
 using AceLand.Input.State;
 using AceLand.Library.Attribute;
+using AceLand.Library.BuildLeveling;
 using AceLand.Library.ProjectSetting;
 using AceLand.PlayerLoopHack;
 using UnityEngine;
@@ -28,25 +29,11 @@ namespace AceLand.Input.ProjectSetting
         [ConditionalShow("handleButtonInput")]
         public ReleaseHandlingType releaseType = ReleaseHandlingType.ReleasedOnly;
         [ConditionalShow("handleButtonInput")]
-        public bool enableQuitKey;
-        [ConditionalShow("handleButtonInput", "enableQuitKey")]
-        public string quitKey = "Quit";
-        [ConditionalShow("handleButtonInput", "enableQuitKey")]
-        public bool disableQuitKeyInEditor;
-        [ConditionalShow("handleButtonInput", "enableQuitKey")]
-        public bool disableQuitKeyInDevBuild;
-        [ConditionalShow("handleButtonInput", "enableQuitKey")]
-        public bool disableQuitKeyInRuntime;
+        public BuildLevel quitKeyLevel = BuildLevel.DevelopmentBuild;
+        public string quitKey = "PlayerQuit";
         [ConditionalShow("handleButtonInput")]
-        public bool enableReloadKey;
-        [ConditionalShow("handleButtonInput", "enableReloadKey")]
-        public string reloadKey = "Reload";
-        [ConditionalShow("handleButtonInput", "enableReloadKey")]
-        public bool disableReloadKeyInEditor;
-        [ConditionalShow("handleButtonInput", "enableReloadKey")]
-        public bool disableReloadKeyInDevBuild;
-        [ConditionalShow("handleButtonInput", "enableReloadKey")]
-        public bool disableReloadKeyInRuntime;
+        public BuildLevel reloadKeyLevel = BuildLevel.DevelopmentBuild;
+        public string reloadKey = "PlayerReload";
 
         [Header("Axis Input")]
         public bool handleAxisInput = true;
