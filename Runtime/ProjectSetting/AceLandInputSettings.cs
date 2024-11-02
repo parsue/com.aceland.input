@@ -11,42 +11,68 @@ namespace AceLand.Input.ProjectSetting
     public class AceLandInputSettings : ProjectSettings<AceLandInputSettings>
     {
         [Header("Settings")]
-        public PlayerLoopType managerLoopType = PlayerLoopType.TimeUpdate;
-        public PlayerLoopType inputLoopType = PlayerLoopType.Initialization;
-        public InputActionAsset actionAsset;
-        public char keyNameSeparateChar = '_';
+        [SerializeField] private PlayerLoopType managerLoopType = PlayerLoopType.TimeUpdate;
+        [SerializeField] private PlayerLoopType inputLoopType = PlayerLoopType.Initialization;
+        [SerializeField] private InputActionAsset actionAsset;
+        [SerializeField] private char keyNameSeparateChar = '_';
         
         [Header("Cursor")]
-        public bool showWinCursor = true;
-        public CursorLockMode lockMode = CursorLockMode.None;
-        public bool showGameCursor;
-        public bool showOnClickFX;
+        [SerializeField] private bool showWinCursor = true;
+        [SerializeField] private CursorLockMode lockMode = CursorLockMode.None;
+        [SerializeField] private bool showGameCursor;
+        [SerializeField] private bool showOnClickFX;
 
         [Header("Button Input")]
-        public bool handleButtonInput = true;
+        [SerializeField] private bool handleButtonInput = true;
         [ConditionalShow("handleButtonInput")]
-        public string buttonActionMapName = "ButtonInput";
+        [SerializeField] private string buttonActionMapName = "ButtonInput";
         [ConditionalShow("handleButtonInput")]
-        public ReleaseHandlingType releaseType = ReleaseHandlingType.ReleasedOnly;
+        [SerializeField] private ReleaseHandlingType releaseType = ReleaseHandlingType.ReleasedOnly;
         [ConditionalShow("handleButtonInput")]
-        public BuildLevel quitKeyLevel = BuildLevel.DevelopmentBuild;
-        public string quitKey = "PlayerQuit";
+        [SerializeField] private BuildLevel quitKeyLevel = BuildLevel.DevelopmentBuild;
+        [SerializeField] private string quitKey = "PlayerQuit";
         [ConditionalShow("handleButtonInput")]
-        public BuildLevel reloadKeyLevel = BuildLevel.DevelopmentBuild;
-        public string reloadKey = "PlayerReload";
-
+        [SerializeField] private BuildLevel reloadKeyLevel = BuildLevel.DevelopmentBuild;
+        [SerializeField] private string reloadKey = "PlayerReload";
+        
         [Header("Axis Input")]
-        public bool handleAxisInput = true;
+        [SerializeField] private bool handleAxisInput = true;
         [ConditionalShow("handleAxisInput")]
-        public string axisActionMapName = "AxisInput";
+        [SerializeField] private string axisActionMapName = "AxisInput";
         [ConditionalShow("handleAxisInput")]
-        [Range(-1, 1)] public float axisButtonThreshold = -0.6f;
+        [SerializeField, Range(-1, 1)] private float axisButtonThreshold = -0.6f;
         [ConditionalShow("handleAxisInput")]
-        [Min(0)] public float axisButtonActionTime = 0.8f;
+        [SerializeField, Min(0)] private float axisButtonActionTime = 0.8f;
         
         [Header("Axis2 Input")]
-        public bool handleAxis2Input = true;
+        [SerializeField] private bool handleAxis2Input = true;
         [ConditionalShow("handleAxis2Input")]
-        public string axis2ActionMapName = "Axis2Input";
+        [SerializeField] private string axis2ActionMapName = "Axis2Input";
+
+        public PlayerLoopType ManagerLoopType => managerLoopType;
+        public PlayerLoopType InputLoopType => inputLoopType;
+        public InputActionAsset ActionAsset => actionAsset;
+        public char KeyNameSeparateChar => keyNameSeparateChar;
+
+        public bool ShowWinCursor => showWinCursor;
+        public CursorLockMode LockMode => lockMode;
+        public bool ShowGameCursor => showGameCursor;
+        public bool ShowOnClickFx => showOnClickFX;
+
+        public bool HandleButtonInput => handleButtonInput;
+        public string ButtonActionMapName => buttonActionMapName;
+        public ReleaseHandlingType ReleaseType => releaseType;
+        public BuildLevel QuitKeyLevel => quitKeyLevel;
+        public string QuitKey => quitKey;
+        public BuildLevel ReloadKeyLevel => reloadKeyLevel;
+        public string ReloadKey => reloadKey; 
+
+        public bool HandleAxisInput => handleAxisInput;
+        public string AxisActionMapName => axisActionMapName;
+        public float AxisButtonThreshold => axisButtonThreshold;
+        public float AxisButtonActionTime => axisButtonActionTime;
+
+        public bool HandleAxis2Input => handleAxis2Input;
+        public string Axis2ActionMapName => axis2ActionMapName;
     }
 }

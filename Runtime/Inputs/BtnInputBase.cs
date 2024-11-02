@@ -115,7 +115,7 @@ namespace AceLand.Input.Inputs
             ReleaseFromHolding = btnStatus.IsHolding;
             btnStatus.ReleaseTime = Time.realtimeSinceStartup;
             btnStatus.State = btnStatus.ReleaseTime - btnStatus.PressTime < InputSettings.defaultHoldTime
-                ? Settings.releaseType is ReleaseHandlingType.ReleasedOnly
+                ? Settings.ReleaseType is ReleaseHandlingType.ReleasedOnly
                     ? BtnState.Released 
                     : BtnState.ReleasedAsButton
                 : BtnState.Released;

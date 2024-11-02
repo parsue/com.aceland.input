@@ -40,21 +40,21 @@ namespace AceLand.Input.PlayerLoopSystems
         {
             SetCursor();
             
-            if (Settings.handleButtonInput)
+            if (Settings.HandleButtonInput)
             {
                 _buttonInput = new ButtonInput();
                 _buttonInput.Init();
                 SetButtonInput();
             }
 
-            if (Settings.handleAxisInput)
+            if (Settings.HandleAxisInput)
             {
                 AxisInputSystem = new AxisInput();
                 AxisInputSystem.Init();
                 SetAxisInput();
             }
 
-            if (Settings.handleAxis2Input)
+            if (Settings.HandleAxis2Input)
             {
                 Axis2InputSystem = new Axis2Input();
                 Axis2InputSystem.Init();
@@ -68,14 +68,14 @@ namespace AceLand.Input.PlayerLoopSystems
         {
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InsertSystem(Settings.managerLoopType);
-            TaskHelper.AddApplicationQuitListener(Stop);
+            _playerLoopSystem.InsertSystem(Settings.ManagerLoopType);
+            Promise.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()
         {
             OnStop();
-            _playerLoopSystem.RemoveSystem(Settings.managerLoopType);
+            _playerLoopSystem.RemoveSystem(Settings.ManagerLoopType);
         }
         
         public void SystemUpdate()
@@ -92,7 +92,7 @@ namespace AceLand.Input.PlayerLoopSystems
 
         private void OnStop()
         {
-            Cursor.visible = Settings.showWinCursor;
+            Cursor.visible = Settings.ShowWinCursor;
             _actionButtonInput?.Disable();
             _actionAxisInput?.Disable();
             _actionAxis2Input?.Disable();
@@ -105,8 +105,8 @@ namespace AceLand.Input.PlayerLoopSystems
 
         private static void SetCursor()
         {
-            Cursor.visible = Settings.showWinCursor;
-            Cursor.lockState = Settings.lockMode;
+            Cursor.visible = Settings.ShowWinCursor;
+            Cursor.lockState = Settings.LockMode;
         }
 
         public static void ShowCursor(bool show)
@@ -135,25 +135,25 @@ namespace AceLand.Input.PlayerLoopSystems
 
         private void SetButtonInput()
         {
-            if (!Settings.handleButtonInput) return;
-            _actionButtonInput = Settings.actionAsset.actionMaps
-                .First(a => a.name == Settings.buttonActionMapName);
+            if (!Settings.HandleButtonInput) return;
+            _actionButtonInput = Settings.ActionAsset.actionMaps
+                .First(a => a.name == Settings.ButtonActionMapName);
             _buttonInput.SetActions(_actionButtonInput);
         }
 
         private void SetAxisInput()
         {
-            if (!Settings.handleAxisInput) return;
-            _actionAxisInput = Settings.actionAsset.actionMaps
-                .First(a => a.name == Settings.axisActionMapName);
+            if (!Settings.HandleAxisInput) return;
+            _actionAxisInput = Settings.ActionAsset.actionMaps
+                .First(a => a.name == Settings.AxisActionMapName);
             AxisInputSystem.SetActions(_actionAxisInput);
         }
 
         private void SetAxis2Input()
         {
-            if (!Settings.handleAxis2Input) return;
-            _actionAxis2Input = Settings.actionAsset.actionMaps
-                .First(a => a.name == Settings.axis2ActionMapName);
+            if (!Settings.HandleAxis2Input) return;
+            _actionAxis2Input = Settings.ActionAsset.actionMaps
+                .First(a => a.name == Settings.Axis2ActionMapName);
             Axis2InputSystem.SetActions(_actionAxis2Input);
         }
     }

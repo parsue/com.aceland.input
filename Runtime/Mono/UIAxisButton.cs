@@ -41,7 +41,7 @@ namespace AceLand.Input.Mono
 
         private void InputHandle(float clampedValue)
         {
-            if (clampedValue < Settings.axisButtonThreshold)
+            if (clampedValue < Settings.AxisButtonThreshold)
             {
                 if (!_init) _init = true;
                 if (_inputCoroutine == null) return;
@@ -58,10 +58,10 @@ namespace AceLand.Input.Mono
 
         private IEnumerator InputControl()
         {
-            var targetTime = Time.realtimeSinceStartup + Settings.axisButtonActionTime;
+            var targetTime = Time.realtimeSinceStartup + Settings.AxisButtonActionTime;
             while (Time.realtimeSinceStartup < targetTime)
             {
-                var amount = (targetTime - Time.realtimeSinceStartup) / Settings.axisButtonActionTime;
+                var amount = (targetTime - Time.realtimeSinceStartup) / Settings.AxisButtonActionTime;
                 var color = Color.Lerp(selectColor, activeColor, amount);
                 Image.color = color;
                 yield return null;

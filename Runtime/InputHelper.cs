@@ -9,10 +9,13 @@ namespace AceLand.Input
 {
     public static class InputHelper
     {
-        public static AceLandInputSettings Settings
+        internal static AceLandInputSettings Settings
         {
-            get => _settings ?? Resources.Load<AceLandInputSettings>(nameof(AceLandInputSettings));
-            internal set => _settings = value;
+            get
+            {
+                _settings ??= Resources.Load<AceLandInputSettings>(nameof(AceLandInputSettings));
+                return _settings;
+            }
         }
         
         private static AceLandInputSettings _settings;
@@ -25,7 +28,7 @@ namespace AceLand.Input
             InputManager.GetButtonStatus(name);
 
         public static InputAction GetAction(string name) =>
-            Settings.actionAsset.FindAction(name);
+            Settings.ActionAsset.FindAction(name);
         
         public static void SetBtnStatus(string name, BtnState state) =>
             InputManager.SetBtnStatus(name, state);

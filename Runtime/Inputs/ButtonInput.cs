@@ -46,10 +46,10 @@ namespace AceLand.Input.Inputs
             {
                 var btnName = action.name;
                 
-                if (btnName == Settings.quitKey && Settings.quitKeyLevel.IsAcceptedLevel())
+                if (btnName == Settings.QuitKey && Settings.QuitKeyLevel.IsAcceptedLevel())
                     action.performed += _ => OnPlayerQuit();
                 
-                if (btnName == Settings.reloadKey && Settings.reloadKeyLevel.IsAcceptedLevel())
+                if (btnName == Settings.ReloadKey && Settings.ReloadKeyLevel.IsAcceptedLevel())
                     action.performed += _ => OnPlayerReload();
                 
                 AddBtn(btnName);

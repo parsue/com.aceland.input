@@ -84,10 +84,10 @@ namespace AceLand.Input.PlayerLoopSystems
 
         protected override void OnInit()
         {
-            if (!Settings.handleAxisInput) return;
+            if (!Settings.HandleAxisInput) return;
             
             OnStart();
-            TaskHelper.AddApplicationQuitListener(OnStop);
+            Promise.AddApplicationQuitListener(OnStop);
         }
 
         private void OnStart()
