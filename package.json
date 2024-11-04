@@ -1,13 +1,18 @@
 {
   "name": "com.aceland.input",
-  "displayName": "AceLand Input",
   "version": "1.0.0",
+  "displayName": "AceLand Input",
+  "description": "AceLand Input is a Unity Input System Implement dependency.",
+  "unity": "2022.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parsue/com.aceland.input.git"
+  },
   "author": {
     "name": "Parsue - AceLand Workshop",
+    "email": "parsue@gmail.com",
     "url": "http://www.parsue.io/"
   },
-  "unity": "2022.3",
-  "description": "AceLand Input is a local supporting services dependency",
   "keywords": [
     "aceland",
     "input"
@@ -19,5 +24,9 @@
     "com.aceland.taskutils": "1.0.0",
     "com.unity.inputsystem": "1.10.0"
   },
-  "documentationUrl": ""
+  "publishConfig": {
+    "registry": "https://package.openupm.com"
+  },
+  "documentationUrl": "",
+  "type": "package"
 }
