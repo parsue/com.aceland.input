@@ -2,7 +2,7 @@
   "name": "com.aceland.input",
   "version": "1.0.0",
   "displayName": "AceLand Input",
-  "description": "AceLand Input is a Unity Input System Implement dependency.",
+  "description": "AceLand Input is a Unity Input System Implement package.",
   "unity": "2022.3",
   "repository": {
     "type": "git",
