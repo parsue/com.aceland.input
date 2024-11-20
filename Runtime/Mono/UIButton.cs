@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace AceLand.Input.Mono
 {
     [RequireComponent(typeof(Image))]
-    [AddComponentMenu("AMVR/Input/UI/Button")]
+    [AddComponentMenu("AceLand/Input/UI/Button")]
     [ExecuteInEditMode]
     public class UIButton : MonoBehaviour,
         IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler

@@ -39,6 +39,9 @@ namespace AceLand.Input.PlayerLoopSystems
         internal void Initialize()
         {
             SetCursor();
+
+            if (!Settings.ActionAsset) return;
+            if (Settings.ActionAsset.actionMaps.Count == 0) return;
             
             if (Settings.HandleButtonInput)
             {
@@ -68,14 +71,14 @@ namespace AceLand.Input.PlayerLoopSystems
         {
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InsertSystem(Settings.ManagerLoopType);
+            _playerLoopSystem.InjectSystem(Settings.ManagerLoopState);
             Promise.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()
         {
             OnStop();
-            _playerLoopSystem.RemoveSystem(Settings.ManagerLoopType);
+            _playerLoopSystem.RemoveSystem(Settings.ManagerLoopState);
         }
         
         public void SystemUpdate()
@@ -106,7 +109,9 @@ namespace AceLand.Input.PlayerLoopSystems
         private static void SetCursor()
         {
             Cursor.visible = Settings.ShowWinCursor;
-            Cursor.lockState = Settings.LockMode;
+            
+            if (Settings.IsLockCursor)
+                Cursor.lockState = Settings.LockMode;
         }
 
         public static void ShowCursor(bool show)
@@ -136,24 +141,33 @@ namespace AceLand.Input.PlayerLoopSystems
         private void SetButtonInput()
         {
             if (!Settings.HandleButtonInput) return;
+            
             _actionButtonInput = Settings.ActionAsset.actionMaps
-                .First(a => a.name == Settings.ButtonActionMapName);
+                .FirstOrDefault(a => a.name == Settings.ButtonActionMapName);
+            if (_actionButtonInput is null) return;
+            
             _buttonInput.SetActions(_actionButtonInput);
         }
 
         private void SetAxisInput()
         {
             if (!Settings.HandleAxisInput) return;
+            
             _actionAxisInput = Settings.ActionAsset.actionMaps
-                .First(a => a.name == Settings.AxisActionMapName);
+                .FirstOrDefault(a => a.name == Settings.AxisActionMapName);
+            if (_actionAxisInput is null) return;
+            
             AxisInputSystem.SetActions(_actionAxisInput);
         }
 
         private void SetAxis2Input()
         {
             if (!Settings.HandleAxis2Input) return;
+            
             _actionAxis2Input = Settings.ActionAsset.actionMaps
-                .First(a => a.name == Settings.Axis2ActionMapName);
+                .FirstOrDefault(a => a.name == Settings.Axis2ActionMapName);
+            if (_actionAxis2Input is null) return;
+            
             Axis2InputSystem.SetActions(_actionAxis2Input);
         }
     }

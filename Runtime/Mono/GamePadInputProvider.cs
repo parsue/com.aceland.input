@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace AceLand.Input.Mono
 {
+    [AddComponentMenu("AceLand/Input/Game Pad Input Provider")]
     public class GamePadInputProvider : MonoBehaviour
     {
         [Header("Action Name")]

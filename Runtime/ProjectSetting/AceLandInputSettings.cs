@@ -5,22 +5,25 @@ using AceLand.Library.ProjectSetting;
 using AceLand.PlayerLoopHack;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace AceLand.Input.ProjectSetting
 {
     public class AceLandInputSettings : ProjectSettings<AceLandInputSettings>
     {
+        [FormerlySerializedAs("managerLoopType")]
         [Header("Settings")]
-        [SerializeField] private PlayerLoopType managerLoopType = PlayerLoopType.TimeUpdate;
-        [SerializeField] private PlayerLoopType inputLoopType = PlayerLoopType.Initialization;
+        [SerializeField] private PlayerLoopState managerLoopState = PlayerLoopState.TimeUpdate;
+        [FormerlySerializedAs("inputLoopType")] [SerializeField] private PlayerLoopState inputLoopState = PlayerLoopState.Initialization;
         [SerializeField] private InputActionAsset actionAsset;
         [SerializeField] private char keyNameSeparateChar = '_';
         
         [Header("Cursor")]
         [SerializeField] private bool showWinCursor = true;
-        [SerializeField] private CursorLockMode lockMode = CursorLockMode.None;
-        [SerializeField] private bool showGameCursor;
-        [SerializeField] private bool showOnClickFX;
+        [Tooltip("Invert Build Level")]
+        [SerializeField] private BuildLevel cursorLockLevel; 
+        [ConditionalShow("cursorLockLevel", true, BuildLevel.None)] 
+        [SerializeField]private CursorLockMode lockMode;
 
         [Header("Button Input")]
         [SerializeField] private bool handleButtonInput = true;
@@ -29,10 +32,12 @@ namespace AceLand.Input.ProjectSetting
         [ConditionalShow("handleButtonInput")]
         [SerializeField] private ReleaseHandlingType releaseType = ReleaseHandlingType.ReleasedOnly;
         [ConditionalShow("handleButtonInput")]
-        [SerializeField] private BuildLevel quitKeyLevel = BuildLevel.DevelopmentBuild;
+        [SerializeField] private BuildLevel quitKeyLevel = BuildLevel.Development;
+        [ConditionalShow("handleButtonInput", "quitKeyLevel", true, BuildLevel.None)]
         [SerializeField] private string quitKey = "PlayerQuit";
         [ConditionalShow("handleButtonInput")]
-        [SerializeField] private BuildLevel reloadKeyLevel = BuildLevel.DevelopmentBuild;
+        [SerializeField] private BuildLevel reloadKeyLevel = BuildLevel.Development;
+        [ConditionalShow("handleButtonInput", "reloadKeyLevel", true, BuildLevel.None)]
         [SerializeField] private string reloadKey = "PlayerReload";
         
         [Header("Axis Input")]
@@ -49,15 +54,15 @@ namespace AceLand.Input.ProjectSetting
         [ConditionalShow("handleAxis2Input")]
         [SerializeField] private string axis2ActionMapName = "Axis2Input";
 
-        public PlayerLoopType ManagerLoopType => managerLoopType;
-        public PlayerLoopType InputLoopType => inputLoopType;
+        public PlayerLoopState ManagerLoopState => managerLoopState;
+        public PlayerLoopState InputLoopState => inputLoopState;
         public InputActionAsset ActionAsset => actionAsset;
         public char KeyNameSeparateChar => keyNameSeparateChar;
 
         public bool ShowWinCursor => showWinCursor;
+        public BuildLevel CursorLockLevel => cursorLockLevel;
+        public bool IsLockCursor => cursorLockLevel.IsAcceptedLevelInvert();
         public CursorLockMode LockMode => lockMode;
-        public bool ShowGameCursor => showGameCursor;
-        public bool ShowOnClickFx => showOnClickFX;
 
         public bool HandleButtonInput => handleButtonInput;
         public string ButtonActionMapName => buttonActionMapName;

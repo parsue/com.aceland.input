@@ -93,12 +93,12 @@ namespace AceLand.Input.PlayerLoopSystems
         private void OnStart()
         {
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InsertSystem(PlayerLoopType.Initialization);
+            _playerLoopSystem.InjectSystem(PlayerLoopState.Initialization);
         }
 
         private void OnStop()
         {
-            _playerLoopSystem.RemoveSystem(PlayerLoopType.Initialization);
+            _playerLoopSystem.RemoveSystem(PlayerLoopState.Initialization);
         }
 
         public void SystemUpdate()
