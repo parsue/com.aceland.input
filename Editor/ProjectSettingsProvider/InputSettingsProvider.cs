@@ -1,14 +1,13 @@
 ﻿using AceLand.Input.ProjectSetting;
-using AceLand.Library.Editor;
+using AceLand.Library.Editor.Providers;
 using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace AceLand.Input.Editor.ProjectSettingsProvider
 {
-    public class InputSettingsProvider : SettingsProvider
+    public class InputSettingsProvider : AceLandSettingsProvider
     {
         public const string SETTINGS_NAME = "Project/AceLand Input";
-        private SerializedObject _settings;
         
         [InitializeOnLoadMethod]
         public static void CreateSettings() => AceLandInputSettings.GetSerializedSettings();
@@ -18,7 +17,7 @@ namespace AceLand.Input.Editor.ProjectSettingsProvider
         
         public override void OnActivate(string searchContext, VisualElement rootElement)
         {
-            _settings = AceLandInputSettings.GetSerializedSettings();
+            Settings = AceLandInputSettings.GetSerializedSettings();
         }
 
         [SettingsProvider]
@@ -26,11 +25,6 @@ namespace AceLand.Input.Editor.ProjectSettingsProvider
         {
             var provider = new InputSettingsProvider(SETTINGS_NAME, SettingsScope.Project);
             return provider;
-        }
-
-        public override void OnGUI(string searchContext)
-        {
-            EditorHelper.DrawAllProperties(_settings);
         }
     }
 }
