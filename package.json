@@ -1,8 +1,8 @@
 {
   "name": "com.aceland.input",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "displayName": "AceLand Input",
-  "description": "AceLand Input is a Unity Input System Implement package.",
+  "description": "AceLand Input is a Unity Input System Implement package.\n\nPlease visit our [Git Book](https://aceland-workshop.gitbook.io/aceland-unity-packages).",
   "unity": "2022.3",
   "repository": {
     "type": "git",
@@ -18,15 +18,15 @@
     "input"
   ],
   "dependencies": {
-    "com.aceland.library": "1.0.3",
-    "com.aceland.eventdriven": "1.0.3",
-    "com.aceland.playerloophack": "1.0.3",
-    "com.aceland.taskutils": "1.0.3",
+    "com.aceland.library": "1.0.4",
+    "com.aceland.eventdriven": "1.0.4",
+    "com.aceland.playerloophack": "1.0.4",
+    "com.aceland.taskutils": "1.0.4",
     "com.unity.inputsystem": "1.10.0"
   },
   "publishConfig": {
     "registry": "https://package.openupm.com"
   },
-  "documentationUrl": "",
+  "documentationUrl": "https://aceland-workshop.gitbook.io/aceland-unity-packages",
   "type": "package"
 }
