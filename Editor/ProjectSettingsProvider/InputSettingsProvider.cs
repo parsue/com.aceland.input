@@ -7,7 +7,7 @@ namespace AceLand.Input.Editor.ProjectSettingsProvider
 {
     public class InputSettingsProvider : AceLandSettingsProvider
     {
-        public const string SETTINGS_NAME = "Project/AceLand Input";
+        public const string SETTINGS_NAME = "Project/AceLand Packages/Input";
         
         [InitializeOnLoadMethod]
         public static void CreateSettings() => AceLandInputSettings.GetSerializedSettings();

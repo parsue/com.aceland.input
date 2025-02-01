@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Input Provider
+- enable/disable provider - directly enable/disable an input action
+
+### Sticky Keys
+- support natively in key bindings or all input data of events
+
+### GamePad Input Provider
+- change to Singleton<T> - read this page of library for details
+- complete 4-direction and 8-direction support
+
+### UI Button
+- supporting Canvas Group
+
+### Multi-Player Input Support
+- multi input mapping components
+
 ---
+
+## [1.0.7] - 2025-1-25
+
+### Modify
+- [Editor] AceLand Project Setting as Tree structure
 
 ## [1.0.6] - 2024-11-26
 
