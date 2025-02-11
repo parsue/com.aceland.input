@@ -20,8 +20,9 @@ namespace AceLand.Input.PlayerLoopSystems
             foreach (var key in DataKeys)
             {
                 var data = InputData[key];
-                foreach (var handler in InterfaceMapping.FindObjects<IAxis2Input>())
-                    handler?.OnAxis2Input(data);
+                var implementations  = InterfaceBinding.ListBindings<IAxis2Input>();
+                foreach (var impl in implementations )
+                    impl?.OnAxis2Input(data);
             }
         }
     }

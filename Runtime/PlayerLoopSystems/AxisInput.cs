@@ -23,8 +23,9 @@ namespace AceLand.Input.PlayerLoopSystems
                 var data = InputData[key];
                 if (Equals(data.RawData, data.LastRawData)) continue;
                 
-                foreach (var handler in InterfaceMapping.FindObjects<IAxisInput>())
-                    handler?.OnAxisInput(data);
+                var implementations  = InterfaceBinding.ListBindings<IAxisInput>();
+                foreach (var impl in implementations )
+                    impl?.OnAxisInput(data);
             }
         }
     }

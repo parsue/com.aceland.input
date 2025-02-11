@@ -22,7 +22,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [1.0.7] - 2025-1-25
+## [1.0.8] - 2025-02-11
+
+### Modify
+- use Interface Binding (user need update codes)
+
+## [1.0.7] - 2025-01-25
 
 ### Modify
 - [Editor] AceLand Project Setting as Tree structure

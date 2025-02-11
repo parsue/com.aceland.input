@@ -60,8 +60,9 @@ namespace AceLand.Input.Inputs
 
         private void OnPlayerReload()
         {
-            foreach (var listener in InterfaceMapping.FindObjects<IReloadButtonPressed>())
-                listener?.OnReloadButtonPressed();
+            var implementations  = InterfaceBinding.ListBindings<IReloadButtonPressed>();
+            foreach (var impl in implementations )
+                impl?.OnReloadButtonPressed();
 
             Debug.Log("Player Reload Scene");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -69,8 +70,9 @@ namespace AceLand.Input.Inputs
 
         private void OnPlayerQuit()
         {
-            foreach (var listener in InterfaceMapping.FindObjects<IQuitButtonPressed>())
-                listener?.OnQuitButtonPressed();
+            var implementations  = InterfaceBinding.ListBindings<IQuitButtonPressed>();
+            foreach (var impl in implementations )
+                impl?.OnQuitButtonPressed();
             
             Debug.Log("Player Quit");
 #if UNITY_EDITOR
@@ -89,10 +91,9 @@ namespace AceLand.Input.Inputs
             if (btnStatus.State is not BtnState.Pressed) return;
             if (InputManager.OverrideUserInput) return;
 
-            foreach (var handler in InterfaceMapping.FindObjects<IButtonPressed>())
-            {
-                handler?.OnButtonPressed(btnStatus);
-            }
+            var implementations  = InterfaceBinding.ListBindings<IButtonPressed>();
+            foreach (var impl in implementations )
+                impl?.OnButtonPressed(btnStatus);
         }
 
         protected override void OnHold(string name)
@@ -104,8 +105,9 @@ namespace AceLand.Input.Inputs
             if (btnStatus.State is not BtnState.Holding) return;
             if (InputManager.OverrideUserInput) return;
             
-            foreach (var handler in InterfaceMapping.FindObjects<IButtonHold>())
-                handler?.OnButtonHold(btnStatus);
+            var implementations  = InterfaceBinding.ListBindings<IButtonHold>();
+            foreach (var impl in implementations )
+                impl?.OnButtonHold(btnStatus);
         }
 
         protected override void OnRelease(string name)
@@ -118,14 +120,16 @@ namespace AceLand.Input.Inputs
             
             if (btnStatus.State is BtnState.Released)
             {
-                foreach (var handler in InterfaceMapping.FindObjects<IButtonReleased>())
-                    handler?.OnButtonReleased(btnStatus);
+                var implementations  = InterfaceBinding.ListBindings<IButtonReleased>();
+                foreach (var impl in implementations )
+                    impl?.OnButtonReleased(btnStatus);
                 
                 return;
             }
             
-            foreach (var handler in InterfaceMapping.FindObjects<IButtonReleasedAsButton>())
-                handler?.OnButtonReleasedAsButton(btnStatus);
+            var implementations2  = InterfaceBinding.ListBindings<IButtonReleasedAsButton>();
+            foreach (var impl in implementations2 )
+                impl?.OnButtonReleasedAsButton(btnStatus);
         }
     }
 }
