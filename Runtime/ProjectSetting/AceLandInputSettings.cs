@@ -5,16 +5,14 @@ using AceLand.Library.ProjectSetting;
 using AceLand.PlayerLoopHack;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace AceLand.Input.ProjectSetting
 {
     public class AceLandInputSettings : ProjectSettings<AceLandInputSettings>
     {
-        [FormerlySerializedAs("managerLoopType")]
         [Header("Settings")]
         [SerializeField] private PlayerLoopState managerLoopState = PlayerLoopState.TimeUpdate;
-        [FormerlySerializedAs("inputLoopType")] [SerializeField] private PlayerLoopState inputLoopState = PlayerLoopState.Initialization;
+        [SerializeField] private PlayerLoopState inputLoopState = PlayerLoopState.Initialization;
         [SerializeField] private InputActionAsset actionAsset;
         [SerializeField] private char keyNameSeparateChar = '_';
         

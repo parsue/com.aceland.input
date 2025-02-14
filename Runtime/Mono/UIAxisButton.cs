@@ -1,4 +1,5 @@
 using System.Collections;
+using AceLand.EventDriven.EventInterface;
 using AceLand.Input.Events;
 using AceLand.Input.ProjectSetting;
 using AceLand.Input.State;
@@ -22,9 +23,16 @@ namespace AceLand.Input.Mono
         private bool _init;
         private Coroutine _inputCoroutine;
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            this.Bind<IAxisInput>();
+        }
+
         protected override void OnDisable()
         {
             base.OnDisable();
+            this.Unbind<IAxisInput>();
             _init = false;
             if (_inputCoroutine == null) return;
             StopCoroutine(_inputCoroutine);
