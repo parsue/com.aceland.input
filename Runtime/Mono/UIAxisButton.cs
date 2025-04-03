@@ -1,5 +1,5 @@
 using System.Collections;
-using AceLand.EventDriven.EventInterface;
+using AceLand.EventDriven.Bus;
 using AceLand.Input.Events;
 using AceLand.Input.ProjectSetting;
 using AceLand.Input.State;
@@ -11,8 +11,7 @@ namespace AceLand.Input.Mono
     [RequireComponent(typeof(Image))]
     [AddComponentMenu("AceLand/Input/UI/Axis Button")]
     [ExecuteInEditMode]
-    public class UIAxisButton : UIButton,
-        IAxisInput
+    public class UIAxisButton : UIButton
     {
         private static AceLandInputSettings Settings => InputHelper.Settings;
         
@@ -26,20 +25,23 @@ namespace AceLand.Input.Mono
         protected override void OnEnable()
         {
             base.OnEnable();
-            this.Bind<IAxisInput>();
+            EventBus.Event<IAxisInput>()
+                .WithListener<InputData<float>>(OnAxisInput)
+                .Listen();
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
-            this.Unbind<IAxisInput>();
             _init = false;
+            EventBus.Event<IAxisInput>()
+                .Unlisten<InputData<float>>(OnAxisInput);
             if (_inputCoroutine == null) return;
             StopCoroutine(_inputCoroutine);
             _inputCoroutine = null;
         }
 
-        public void OnAxisInput(InputData<float> data)
+        private void OnAxisInput(object sender, InputData<float> data)
         {
             if (!enabled || !interactable) return;
             if (data.Name != axisKey) return;

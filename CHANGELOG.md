@@ -22,32 +22,30 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [1.0.10] - 2025-02-14
+## [1.0.11] - 2025-04-04
+### Modify
+- updating with EventBus
 
+## [1.0.10] - 2025-02-14
 ### Modify
 - [Mono] updating Interface Binding 
 
 ## [1.0.9] - 2025-02-11
-
 ### Modify
 - updating Interface Binding
 
 ## [1.0.8] - 2025-02-11
-
 ### Modify
 - use Interface Binding (user need update codes)
 
 ## [1.0.7] - 2025-01-25
-
 ### Modify
 - [Editor] AceLand Project Setting as Tree structure
 
 ## [1.0.6] - 2024-11-26
-
 ### Modify
 - [Editor] Undo functional for Project Settings
 
 ## [1.0.4] - 2024-11-24
-
 First public release. If you have an older version, please update or re-install.   
 For detail please visit and bookmark our [GitBook](https://aceland-workshop.gitbook.io/aceland-unity-packages/)

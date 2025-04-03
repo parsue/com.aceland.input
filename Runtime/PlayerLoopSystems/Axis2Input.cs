@@ -1,5 +1,5 @@
 ﻿using System;
-using AceLand.EventDriven.EventInterface;
+using AceLand.EventDriven.Bus;
 using AceLand.Input.Events;
 using UnityEngine;
 
@@ -20,9 +20,10 @@ namespace AceLand.Input.PlayerLoopSystems
             foreach (var key in DataKeys)
             {
                 var data = InputData[key];
-                var implementations  = InterfaceBinding.ListBindings<IAxis2Input>();
-                foreach (var impl in implementations )
-                    impl?.OnAxis2Input(data);
+                EventBus.Event<IAxis2Input>()
+                    .WithSender(this)
+                    .WithData(data)
+                    .Raise();
             }
         }
     }
