@@ -1,4 +1,6 @@
+using AceLand.EventDriven.Bus;
+
 namespace AceLand.Input.Events
 {
-    public interface IButtonHold {}
+    public interface IButtonHold : IEvent {}
 }

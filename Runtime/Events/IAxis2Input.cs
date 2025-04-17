@@ -1,4 +1,6 @@
-﻿namespace AceLand.Input.Events
+﻿using AceLand.EventDriven.Bus;
+
+namespace AceLand.Input.Events
 {
-    public interface IAxis2Input {}
+    public interface IAxis2Input : IEvent {}
 }

@@ -7,9 +7,6 @@ All notable changes to this project will be documented in this file.
 ### Input Provider
 - enable/disable provider - directly enable/disable an input action
 
-### Sticky Keys
-- support natively in key bindings or all input data of events
-
 ### GamePad Input Provider
 - change to Singleton<T> - read this page of library for details
 - complete 4-direction and 8-direction support
@@ -21,6 +18,10 @@ All notable changes to this project will be documented in this file.
 - multi input mapping components
 
 ---
+
+## [1.0.12] - 2025-04-17
+### Modify
+- Updating with EventBus
 
 ## [1.0.11] - 2025-04-04
 ### Modify

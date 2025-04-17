@@ -1,4 +1,6 @@
+using AceLand.EventDriven.Bus;
+
 namespace AceLand.Input.Events
 {
-    public interface IButtonReleasedAsButton {}
+    public interface IButtonReleasedAsButton : IEvent {}
 }
