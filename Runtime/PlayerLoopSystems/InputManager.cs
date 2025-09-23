@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AceLand.Input.Inputs;
+﻿using AceLand.Input.Inputs;
 using AceLand.Input.ProjectSetting;
 using AceLand.Input.State;
 using AceLand.Library.Disposable;
@@ -8,6 +7,7 @@ using AceLand.TaskUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.LowLevel;
+using ZLinq;
 
 namespace AceLand.Input.PlayerLoopSystems
 {
@@ -143,6 +143,7 @@ namespace AceLand.Input.PlayerLoopSystems
             if (!Settings.HandleButtonInput) return;
             
             _actionButtonInput = Settings.ActionAsset.actionMaps
+                .AsValueEnumerable()
                 .FirstOrDefault(a => a.name == Settings.ButtonActionMapName);
             if (_actionButtonInput is null) return;
             
@@ -154,6 +155,7 @@ namespace AceLand.Input.PlayerLoopSystems
             if (!Settings.HandleAxisInput) return;
             
             _actionAxisInput = Settings.ActionAsset.actionMaps
+                .AsValueEnumerable()
                 .FirstOrDefault(a => a.name == Settings.AxisActionMapName);
             if (_actionAxisInput is null) return;
             
@@ -165,6 +167,7 @@ namespace AceLand.Input.PlayerLoopSystems
             if (!Settings.HandleAxis2Input) return;
             
             _actionAxis2Input = Settings.ActionAsset.actionMaps
+                .AsValueEnumerable()
                 .FirstOrDefault(a => a.name == Settings.Axis2ActionMapName);
             if (_actionAxis2Input is null) return;
             
