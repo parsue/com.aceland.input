@@ -1,7 +1,7 @@
 ﻿using AceLand.Input.PlayerLoopSystems;
 using AceLand.Input.ProjectSetting;
 using AceLand.Input.State;
-using AceLand.Library.Utils;
+using AceLand.Library;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +22,7 @@ namespace AceLand.Input
 
         public static Vector2 WinMousePosition => InputManager.WinMousePosition;
         public static Vector2 WinMouseDelta => InputManager.WinMouseDelta;
-        public static bool IsOverUI => Helper.IsOverUIElement(WinMousePosition);
+        public static bool IsOverUI => ALib.Helper.IsOverUIElement(WinMousePosition);
 
         public static BtnStatus GetBtnStatus(string name) =>
             InputManager.GetButtonStatus(name);
