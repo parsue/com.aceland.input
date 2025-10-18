@@ -116,17 +116,17 @@ namespace AceLand.Input.Mono
 
         private void OnIdle()
         {
-            InputHelper.SetBtnStatus(actionKey, BtnState.Idle);
+            AceInput.SetBtnStatus(actionKey, BtnState.Idle);
         }
 
         protected virtual void OnPress()
         {
-            InputHelper.SetBtnStatus(actionKey, BtnState.Pressed);
+            AceInput.SetBtnStatus(actionKey, BtnState.Pressed);
         }
 
         protected virtual void OnRelease()
         {
-            InputHelper.SetBtnStatus(actionKey, BtnState.Released);
+            AceInput.SetBtnStatus(actionKey, BtnState.Released);
         }
         
         protected virtual void SetImage()

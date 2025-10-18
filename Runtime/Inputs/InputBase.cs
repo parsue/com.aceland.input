@@ -6,7 +6,7 @@ namespace AceLand.Input.Inputs
 {
     internal abstract class InputBase
     {
-        private protected static AceLandInputSettings Settings => InputHelper.Settings;
+        private protected static AceLandInputSettings Settings => AceInput.Settings;
         private protected readonly InputSettings InputSettings = InputSystem.settings;
 
         internal void Init()

@@ -11,8 +11,6 @@ namespace AceLand.Input.ProjectSetting
     public class AceLandInputSettings : ProjectSettings<AceLandInputSettings>
     {
         [Header("Settings")]
-        [SerializeField] private PlayerLoopState managerLoopState = PlayerLoopState.TimeUpdate;
-        [SerializeField] private PlayerLoopState inputLoopState = PlayerLoopState.Initialization;
         [SerializeField] private InputActionAsset actionAsset;
         [SerializeField] private char keyNameSeparateChar = '_';
         
@@ -52,8 +50,6 @@ namespace AceLand.Input.ProjectSetting
         [ConditionalShow("handleAxis2Input")]
         [SerializeField] private string axis2ActionMapName = "Axis2Input";
 
-        public PlayerLoopState ManagerLoopState => managerLoopState;
-        public PlayerLoopState InputLoopState => inputLoopState;
         public InputActionAsset ActionAsset => actionAsset;
         public char KeyNameSeparateChar => keyNameSeparateChar;
 

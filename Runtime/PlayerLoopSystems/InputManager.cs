@@ -5,6 +5,7 @@ using AceLand.Library.Disposable;
 using AceLand.PlayerLoopHack;
 using AceLand.TaskUtils;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.LowLevel;
 using ZLinq;
@@ -13,11 +14,12 @@ namespace AceLand.Input.PlayerLoopSystems
 {
     internal class InputManager : DisposableObject, IPlayerLoopSystem
     {
-        private static AceLandInputSettings Settings => InputHelper.Settings;
+        private static AceLandInputSettings Settings => AceInput.Settings;
         private static PlayerLoopSystem _playerLoopSystem;
 
         public static Vector2 WinMousePosition => Mouse.current.position.ReadValue();
         public static Vector2 WinMouseDelta => WinMousePosition - _lastMousePosition;
+        public static bool IsOverUI;
         public static bool OverrideUserInput;
 
         public static BtnStatus GetButtonStatus(string name) =>
@@ -71,19 +73,20 @@ namespace AceLand.Input.PlayerLoopSystems
         {
             OnStart();
             _playerLoopSystem = this.CreatePlayerLoopSystem();
-            _playerLoopSystem.InjectSystem(Settings.ManagerLoopState);
+            _playerLoopSystem.InjectSystem(PlayerLoopState.Initialization);
             Promise.AddApplicationQuitListener(Stop);
         }
 
         private void Stop()
         {
             OnStop();
-            _playerLoopSystem.RemoveSystem(Settings.ManagerLoopState);
+            _playerLoopSystem.RemoveSystem(PlayerLoopState.Initialization);
         }
         
         public void SystemUpdate()
         {
             UpdateMousePosition();
+            CheckOverUI();
         }
 
         private void OnStart()
@@ -104,6 +107,11 @@ namespace AceLand.Input.PlayerLoopSystems
         private void UpdateMousePosition()
         {
             _lastMousePosition = WinMousePosition;
+        }
+
+        private void CheckOverUI()
+        {
+            IsOverUI = EventSystem.current && EventSystem.current.IsPointerOverGameObject();
         }
 
         private static void SetCursor()

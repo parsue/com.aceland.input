@@ -13,7 +13,7 @@ namespace AceLand.Input.Mono
     [ExecuteInEditMode]
     public class UIAxisButton : UIButton
     {
-        private static AceLandInputSettings Settings => InputHelper.Settings;
+        private static AceLandInputSettings Settings => AceInput.Settings;
         
         [Header("Axis Button")]
         [SerializeField] private string axisKey;
