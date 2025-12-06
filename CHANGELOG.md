@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+---
 
 ### Input Provider
 - enable/disable provider - directly enable/disable an input action
@@ -16,6 +16,30 @@ All notable changes to this project will be documented in this file.
 
 ### Multi-Player Input Support
 - multi input mapping components
+
+---
+
+## [2.1.1] - 2025-12-06
+### Modified
+- [package.json] add doc links
+
+## [2.1.0] - 2025-11-14
+### Modified
+- [Events] implement with Event Driven 2.1.0
+
+## [2.0.3] - 2025-10-18
+### Modified
+- [API] AceInput as default package API
+- [System] rearrange system loop stats
+- fixed functions issue
+
+## [2.0.2] - 2025-10-05
+### Modified
+- [Input Helper] implement with Library 2.0.4
+
+## [2.0.0] - 2025-09-23
+### Modified
+- [Dependency] Library v2.0.3, implement with ZLinq
 
 ---
 
