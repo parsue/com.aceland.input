@@ -4,20 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-### Input Provider
-- enable/disable provider - directly enable/disable an input action
-
-### GamePad Input Provider
-- change to Singleton<T> - read this page of library for details
-- complete 4-direction and 8-direction support
-
-### UI Button
-- supporting Canvas Group
-
-### Multi-Player Input Support
-- multi input mapping components
-
----
+## [2.2.0] - 2025-12-13
+### Removed
+- all meta files
 
 ## [2.1.1] - 2025-12-06
 ### Modified
