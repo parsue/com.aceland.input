@@ -5,6 +5,6 @@ namespace AceLand.Input.Events
 {
     public interface IQuitButtonPressed : IEvent
     {
-        void OnQuitButtonPressed(object sender, BtnStatus btnStatus);
+        void OnQuitButtonPressed(object sender);
     }
 }

@@ -3,7 +3,7 @@ using AceLand.Input.State;
 
 namespace AceLand.Input.Events
 {
-    public interface IButtonPressed : IEvent
+    public interface IButtonPressed : IEvent<BtnStatus>
     {
         void OnButtonPressed(object sender, BtnStatus btnStatus);
     }

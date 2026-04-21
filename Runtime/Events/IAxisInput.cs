@@ -3,7 +3,7 @@ using AceLand.Input.State;
 
 namespace AceLand.Input.Events
 {
-    public interface IAxisInput : IEvent
+    public interface IAxisInput : IEvent<InputData<float>>
     {
         void OnAxisInput(object sender, InputData<float> data);
     }

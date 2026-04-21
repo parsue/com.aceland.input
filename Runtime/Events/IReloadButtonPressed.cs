@@ -5,6 +5,6 @@ namespace AceLand.Input.Events
 {
     public interface IReloadButtonPressed : IEvent
     {
-        void OnReloadButtonPressed(object sender, BtnStatus btnStatus);
+        void OnReloadButtonPressed(object sender);
     }
 }
