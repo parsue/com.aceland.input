@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2.3.1] - 2026-04-22
+### Modified
+- [Dependency] implement with EventDriven 2.5.0
+- 
 ## [2.3.0] - 2026-04-21
 ### Modified
-- Upgrade with EventDriven 2.4.0
+- [Dependency] implement with EventDriven 2.4.0
 
 ## [2.2.3] - 2025-12-21
 ### Modified
