@@ -5,6 +5,6 @@ namespace AceLand.Input.Events
 {
     public interface IAxisInput : IEvent<InputData<float>>
     {
-        void OnAxisInput(object sender, InputData<float> data);
+        void OnAxisInput(InputData<float> data);
     }
 }

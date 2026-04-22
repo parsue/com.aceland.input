@@ -21,7 +21,6 @@ namespace AceLand.Input.PlayerLoopSystems
             {
                 var data = InputData[key];
                 EventBus.Event<IAxis2Input>()
-                    .WithSender(this)
                     .WithData(data)
                     .Raise();
             }

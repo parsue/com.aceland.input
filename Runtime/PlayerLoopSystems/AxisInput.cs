@@ -24,7 +24,6 @@ namespace AceLand.Input.PlayerLoopSystems
                 if (Equals(data.RawData, data.LastRawData)) continue;
                 
                 EventBus.Event<IAxisInput>()
-                    .WithSender(this)
                     .WithData(data)
                     .Raise();
             }

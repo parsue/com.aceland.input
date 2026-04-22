@@ -40,7 +40,7 @@ namespace AceLand.Input.Mono
             _inputCoroutine = null;
         }
 
-        public void OnAxisInput(object sender, InputData<float> data)
+        public void OnAxisInput(InputData<float> data)
         {
             if (!enabled || !interactable) return;
             if (data.Name != axisKey) return;

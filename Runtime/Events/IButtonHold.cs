@@ -5,6 +5,6 @@ namespace AceLand.Input.Events
 {
     public interface IButtonHold : IEvent<BtnStatus>
     {
-        void OnButtonHold(object sender, BtnStatus btnStatus);
+        void OnButtonHold(BtnStatus btnStatus);
     }
 }

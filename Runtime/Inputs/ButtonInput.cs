@@ -62,7 +62,6 @@ namespace AceLand.Input.Inputs
         {
             Debug.Log("Player Reload Scene");
             EventBus.Event<IReloadButtonPressed>()
-                .WithSender(this)
                 .Raise();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -71,7 +70,6 @@ namespace AceLand.Input.Inputs
         {
             Debug.Log("Player Quit");
             EventBus.Event<IQuitButtonPressed>()
-                .WithSender(this)
                 .Raise();
             
 #if UNITY_EDITOR
@@ -91,7 +89,6 @@ namespace AceLand.Input.Inputs
             if (InputManager.OverrideUserInput) return;
 
             EventBus.Event<IButtonPressed>()
-                .WithSender(this)
                 .WithData(btnStatus)
                 .Raise();
         }
@@ -106,7 +103,6 @@ namespace AceLand.Input.Inputs
             if (InputManager.OverrideUserInput) return;
             
             EventBus.Event<IButtonHold>()
-                .WithSender(this)
                 .WithData(btnStatus)
                 .Raise();
         }
@@ -122,14 +118,12 @@ namespace AceLand.Input.Inputs
             if (btnStatus.State is BtnState.Released)
             {
                 EventBus.Event<IButtonReleased>()
-                    .WithSender(this)
                     .WithData(btnStatus)
                     .Raise();
                 return;
             }
             
             EventBus.Event<IButtonReleasedAsButton>()
-                .WithSender(this)
                 .WithData(btnStatus)
                 .Raise();
         }
